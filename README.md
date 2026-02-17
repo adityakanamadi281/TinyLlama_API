@@ -25,10 +25,16 @@ The API is designed to:
 - A machine with enough RAM/VRAM to host `TinyLlama/TinyLlama-1.1B-Chat-v1.0`  
   (CPU-only will work but be slower; GPU will be auto-used if available).
 
+
+Create a virtual environment using uv 
+```bash
+uv venv
+```
+
 Install dependencies from the project root:
 
 ```bash
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 `requirements.txt` includes:
@@ -77,9 +83,6 @@ This is what the FastAPI app uses.
   - `POST /generate` – text generation.
 - Also includes a `__main__` block so you can run:
 
-```bash
-python main.py
-```
 
 ---
 
@@ -88,7 +91,12 @@ python main.py
 From the project root (`Production_LLM_API`), run:
 
 ```bash
-python main.py
+fastapi dev --app main.py
+```
+or 
+
+```bash
+uvicorn main:app --reaload
 ```
 
 You should see Uvicorn logs similar to:
@@ -99,19 +107,6 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 The first request after startup might be slower while TinyLlama loads.
 
-### Alternative: using `uvicorn` directly
-
-You can also run:
-
-```bash
-uvicorn main:app --reload
-```
-
-> Note: If you use `fastapi dev`, use:
->
-> ```bash
-> fastapi dev --app main:app
-> ```
 
 ---
 
@@ -170,22 +165,3 @@ Once the server is running, open:
 - ReDoc: `http://127.0.0.1:8000/redoc`
 
 You can call `/generate` directly from the Swagger UI.
-
----
-
-## Notes for production hardening
-
-This project is a good starting point, but for real production use you may want to:
-
-- Add **authentication** (API keys, OAuth2, etc.).
-- Implement **request limits** and **rate limiting**.
-- Add **structured logging** and **tracing**.
-- Add timeouts and guardrails around generation (max prompt size, max latency).
-- Containerize the app (Docker) and deploy behind a reverse proxy (e.g., Nginx, Traefik).
-
----
-
-## License
-
-Add your preferred license information here (e.g., MIT, Apache 2.0).
-
