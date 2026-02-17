@@ -187,5 +187,5 @@ This project is a good starting point, but for real production use you may want 
 
 ## License
 
-Add your preferred license information here (e.g., MIT, Apache 2.0).
+MIT License
 
