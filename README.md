@@ -173,18 +173,6 @@ You can call `/generate` directly from the Swagger UI.
 
 ---
 
-## Notes for production hardening
-
-This project is a good starting point, but for real production use you may want to:
-
-- Add **authentication** (API keys, OAuth2, etc.).
-- Implement **request limits** and **rate limiting**.
-- Add **structured logging** and **tracing**.
-- Add timeouts and guardrails around generation (max prompt size, max latency).
-- Containerize the app (Docker) and deploy behind a reverse proxy (e.g., Nginx, Traefik).
-
----
-
 ## License
 
 MIT License
